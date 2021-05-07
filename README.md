@@ -4,7 +4,7 @@ The washing machine store is a project developed in java with Java interfaces (j
 ### How to Clone
 Just clone with git clone:
 ~~~
-git clone https://github.com/anabelisam/readme.md.git
+git clone https://github.com/mipapichulo/WMStore-java.git
 ~~~
 Or your download the zip file.
 
