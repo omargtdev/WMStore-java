@@ -10,8 +10,10 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Sell extends JDialog {
+public class Sell extends JDialog implements ActionListener {
 
 	/**
 	 * 
@@ -87,6 +89,7 @@ public class Sell extends JDialog {
 		getContentPane().add(btnSell);
 		
 		btnClose = new JButton("Cerrar");
+		btnClose.addActionListener(this);
 		btnClose.setBounds(335, 32, 89, 23);
 		getContentPane().add(btnClose);
 		
@@ -97,5 +100,12 @@ public class Sell extends JDialog {
 		txtAreaResult = new JTextArea();
 		scpTxtArea.setViewportView(txtAreaResult);
 
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnClose) {
+			actionPerformedBtnClose(e);
+		}
+	}
+	protected void actionPerformedBtnClose(ActionEvent e) {
 	}
 }

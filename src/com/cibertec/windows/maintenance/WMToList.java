@@ -4,8 +4,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class WMToList extends JDialog {
+public class WMToList extends JDialog implements ActionListener {
 
 	/**
 	 * 
@@ -45,11 +47,19 @@ public class WMToList extends JDialog {
 		scpTextArea.setViewportView(txtAreaResult);
 		
 		btnClose = new JButton("Cerrar");
+		btnClose.addActionListener(this);
 		btnClose.setBounds(118, 260, 89, 23);
 		getContentPane().add(btnClose);
 		
 		btnToList = new JButton("Listar");
 		btnToList.setBounds(227, 260, 89, 23);
 		getContentPane().add(btnToList);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnClose) {
+			actionPerformedBtnClose(e);
+		}
+	}
+	protected void actionPerformedBtnClose(ActionEvent e) {
 	}
 }

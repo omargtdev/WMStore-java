@@ -5,8 +5,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class ConfigDiscount extends JDialog {
+public class ConfigDiscount extends JDialog implements ActionListener {
 	/**
 	 * 
 	 */
@@ -109,7 +111,15 @@ public class ConfigDiscount extends JDialog {
 		getContentPane().add(btnAccept);
 		
 		btnCancel = new JButton("Cancelar");
+		btnCancel.addActionListener(this);
 		btnCancel.setBounds(335, 32, 89, 23);
 		getContentPane().add(btnCancel);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			actionPerformedBtnCancel(e);
+		}
+	}
+	protected void actionPerformedBtnCancel(ActionEvent e) {
 	}
 }

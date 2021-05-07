@@ -141,6 +141,5 @@ public class About extends JDialog implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnNewButton(ActionEvent e) {
-		System.exit(0);
 	}
 }

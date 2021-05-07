@@ -15,14 +15,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
-public class GenerateReports extends JFrame {
+public class GenerateReports extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private JButton btnClose;
+	private JComboBox<String> txtTypeReport;
+	private JScrollPane scpTxtArea;
+	private JTextArea txtAreaResult;
+	private JLabel lblTypeReport;
 	/**
 	 * Launch the application.
 	 */
@@ -56,30 +60,33 @@ public class GenerateReports extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTypeReport = new JLabel("Tipo de reporte");
+		lblTypeReport = new JLabel("Tipo de reporte");
 		lblTypeReport.setBounds(10, 11, 75, 14);
 		contentPane.add(lblTypeReport);
 		
-		JComboBox<String> txtTypeReport = new JComboBox<String>();
+		txtTypeReport = new JComboBox<String>();
 		txtTypeReport.setModel(new DefaultComboBoxModel<String>(new String[] {"Ventas por modelo", "Ventas en relaci\u00F3n a la venta \u00F3ptima", "Precios en relaci\u00F3n al precio promedio", "Promedios, menores y mayores"}));
 		txtTypeReport.setBounds(95, 7, 230, 22);
 		contentPane.add(txtTypeReport);
 		
-		JButton btnClose = new JButton("Cerrar");
-		btnClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnClose = new JButton("Cerrar");
+		btnClose.addActionListener(this);
+		
 		btnClose.setBounds(335, 7, 89, 23);
 		contentPane.add(btnClose);
 		
-		JTextArea txtAreaResult = new JTextArea();
-		txtAreaResult.setBounds(10, 36, 414, 214);
-		contentPane.add(txtAreaResult);
+		scpTxtArea = new JScrollPane();
+		scpTxtArea.setBounds(10, 36, 414, 214);
+		contentPane.add(scpTxtArea);
 		
-		JScrollPane scoTxtArea = new JScrollPane();
-		scoTxtArea.setBounds(10, 36, 414, 214);
-		contentPane.add(scoTxtArea);
+		txtAreaResult = new JTextArea();
+		scpTxtArea.setViewportView(txtAreaResult);
 	}
-
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnClose) {
+			actionPerformedBtnClose(e);
+		}
+	}
+	protected void actionPerformedBtnClose(ActionEvent e) {
+	}
 }

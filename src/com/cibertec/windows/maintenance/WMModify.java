@@ -7,8 +7,10 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class WMModify extends JDialog {
+public class WMModify extends JDialog implements ActionListener {
 
 	/**
 	 * 
@@ -110,7 +112,15 @@ public class WMModify extends JDialog {
 		txtCapacity.setColumns(10);
 		
 		btnClose = new JButton("Cerrar");
-		btnClose.setBounds(335, 7, 89, 23); getContentPane().add(btnClose); btnSave = new JButton("Guardar"); btnSave.setBounds(335, 32, 89, 23);
+		btnClose.addActionListener(this);
+		btnClose.setBounds(335, 7, 89, 23); getContentPane().add(btnClose); btnSave = new JButton("Grabar"); btnSave.setBounds(335, 32, 89, 23);
 		getContentPane().add(btnSave);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnClose) {
+			actionPerformedBtnClose(e);
+		}
+	}
+	protected void actionPerformedBtnClose(ActionEvent e) {
 	}
 }
