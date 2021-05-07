@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 public class WMToList extends JDialog implements ActionListener {
 
@@ -22,6 +23,11 @@ public class WMToList extends JDialog implements ActionListener {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		try {
 			WMToList dialog = new WMToList();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

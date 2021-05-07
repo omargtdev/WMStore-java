@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
+
+import com.cibertec.operations.Data;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -69,7 +72,7 @@ public class Sell extends JDialog implements ActionListener {
 		getContentPane().add(lblQuantity);
 		
 		cboModel = new JComboBox<String>();
-		cboModel.setModel(new DefaultComboBoxModel<String>(new String[] {"WHIRLPOOL WWI16BSBLA", "SAMSUNG WA17T6260BW", "MABE LMA72200WDBB1", "WINIA WLA-195ECG", "LG TS1604NW"}));
+		cboModel.setModel(new DefaultComboBoxModel<String>(new String[] {Data.modelo0, Data.modelo1, Data.modelo2, Data.modelo3, Data.modelo4}));
 		cboModel.setBounds(89, 7, 164, 22);
 		getContentPane().add(cboModel);
 		

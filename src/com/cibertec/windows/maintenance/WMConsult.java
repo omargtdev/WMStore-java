@@ -7,6 +7,9 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
+
+import com.cibertec.operations.Data;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -81,7 +84,7 @@ public class WMConsult extends JDialog implements ActionListener {
 		getContentPane().add(lblCapacity);
 		
 		cboModel = new JComboBox<String>();
-		cboModel.setModel(new DefaultComboBoxModel<String>(new String[] {"LG TS1604NW", "MABE LMA72200WDBB1", "SAMSUNG WA17T6260BW", "WHIRLPOOL WWI16BSBLA", "WINIA WLA-195ECG"}));
+		cboModel.setModel(new DefaultComboBoxModel<String>(new String[] {Data.modelo0, Data.modelo1, Data.modelo2, Data.modelo3, Data.modelo4}));
 		cboModel.setBounds(117, 7, 176, 22);
 		getContentPane().add(cboModel);
 		

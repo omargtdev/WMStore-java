@@ -27,6 +27,12 @@ public class GenerateReports extends JFrame implements ActionListener {
 	private JScrollPane scpTxtArea;
 	private JTextArea txtAreaResult;
 	private JLabel lblTypeReport;
+	
+	//TypeReports
+	private String typeReport1 = "Ventas por modelo"; 
+	private String typeReport2 = "Ventas en relaci\u00F3n a la venta \u00F3ptima"; 
+	private String typeReport3 = "Precios en relaci\u00F3n al precio promedio"; 
+	private String typeReport4 = "Promedios, menores y mayores"; 
 	/**
 	 * Launch the application.
 	 */
@@ -65,7 +71,7 @@ public class GenerateReports extends JFrame implements ActionListener {
 		contentPane.add(lblTypeReport);
 		
 		txtTypeReport = new JComboBox<String>();
-		txtTypeReport.setModel(new DefaultComboBoxModel<String>(new String[] {"Ventas por modelo", "Ventas en relaci\u00F3n a la venta \u00F3ptima", "Precios en relaci\u00F3n al precio promedio", "Promedios, menores y mayores"}));
+		txtTypeReport.setModel(new DefaultComboBoxModel<String>(new String[] {typeReport1, typeReport2, typeReport3, typeReport4}));
 		txtTypeReport.setBounds(95, 7, 230, 22);
 		contentPane.add(txtTypeReport);
 		
