@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
 import com.cibertec.operations.Data;
+import com.cibertec.operations.Validations;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -32,6 +33,7 @@ public class Sell extends JDialog implements ActionListener {
 	private JButton btnClose;
 	private JScrollPane scpTxtArea;
 	private JTextArea txtAreaResult;
+	private Validations val;
 
 	/**
 	 * Launch the application.
@@ -55,6 +57,9 @@ public class Sell extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public Sell() {
+		
+		val = new Validations();
+		
 		setTitle("Vender");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
@@ -88,6 +93,7 @@ public class Sell extends JDialog implements ActionListener {
 		txtQuantity.setColumns(10);
 		
 		btnSell = new JButton("Vender");
+		btnSell.addActionListener(this);
 		btnSell.setBounds(335, 7, 89, 23);
 		getContentPane().add(btnSell);
 		
@@ -105,10 +111,21 @@ public class Sell extends JDialog implements ActionListener {
 
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSell) {
+			actionPerformedBtnSell(e);
+		}
 		if (e.getSource() == btnClose) {
 			actionPerformedBtnClose(e);
 		}
 	}
+
 	protected void actionPerformedBtnClose(ActionEvent e) {
+
+	}
+
+	protected void actionPerformedBtnSell(ActionEvent e) {
+		if(val.isNotEmpty(txtQuantity.getText(), lblQuantity.getText()) && val.isInt(txtQuantity.getText(), lblQuantity.getText())) {
+			
+		}
 	}
 }

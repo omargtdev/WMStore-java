@@ -5,6 +5,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import com.cibertec.operations.Validations;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -21,6 +24,7 @@ public class ConfigGifts extends JDialog implements ActionListener {
 	private JLabel lbl2to5Units;
 	private JLabel lbl6toMore;
 	private JButton btnAccept;
+	private Validations val;
 	/**
 	 * Launch the application.
 	 */
@@ -43,6 +47,9 @@ public class ConfigGifts extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public ConfigGifts() {
+
+		val = new Validations();
+
 		setTitle("Configurar obsequios");
 		setBounds(100, 100, 450, 130);
 		getContentPane().setLayout(null);
@@ -75,6 +82,7 @@ public class ConfigGifts extends JDialog implements ActionListener {
 		txt1Unit.setColumns(10);
 
 		btnAccept = new JButton("Aceptar");
+		btnAccept.addActionListener(this);
 		btnAccept.setBounds(335, 7, 89, 23);
 		getContentPane().add(btnAccept);
 
@@ -85,10 +93,33 @@ public class ConfigGifts extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAccept) {
+			actionPerformedBtnAccept(e);
+		}
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
 		}
 	}
+
 	protected void actionPerformedBtnCancel(ActionEvent e) {
+	}
+
+	protected void actionPerformedBtnAccept(ActionEvent e) {
+		if(validateInputs()) {
+			//Operation
+		}
+	}
+	
+	private boolean validateInputs() {
+		if(val.isNotEmpty(txt1Unit.getText(), lbl1Unit.getText()) && 
+		   val.isNotEmpty(txt2to5Units.getText(), lbl2to5Units.getText()) && 
+		   val.isNotEmpty(txt6toMore.getText(), lbl6toMore.getText()) && 
+		   val.isString(txt1Unit.getText(), lbl1Unit.getText()) && 
+		   val.isString(txt2to5Units.getText(), lbl2to5Units.getText()) && 
+		   val.isString(txt6toMore.getText(), lbl6toMore.getText())) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

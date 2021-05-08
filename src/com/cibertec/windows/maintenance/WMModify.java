@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 
 import com.cibertec.operations.Data;
+import com.cibertec.operations.Validations;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -33,6 +34,7 @@ public class WMModify extends JDialog implements ActionListener {
 	private JTextField txtCapacity;
 	private JButton btnClose;
 	private JButton btnSave;
+	private Validations val;
 
 	/**
 	 * Launch the application.
@@ -56,6 +58,9 @@ public class WMModify extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public WMModify() {
+		
+		val = new Validations();
+		
 		setTitle("Modificar lavadora");
 		setBounds(100, 100, 450, 204);
 		getContentPane().setLayout(null);
@@ -119,14 +124,41 @@ public class WMModify extends JDialog implements ActionListener {
 		btnClose.setBounds(335, 7, 89, 23); getContentPane().add(btnClose); 
 
 		btnSave = new JButton("Grabar");
+		btnSave.addActionListener(this);
 		btnSave.setBounds(335, 32, 89, 23);
 		getContentPane().add(btnSave);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSave) {
+			actionPerformedBtnSave(e);
+		}
 		if (e.getSource() == btnClose) {
 			actionPerformedBtnClose(e);
 		}
 	}
+
 	protected void actionPerformedBtnClose(ActionEvent e) {
+		
+	}
+
+	protected void actionPerformedBtnSave(ActionEvent e) {
+		if(validateInputs()) {
+			
+		}
+	}
+	
+	private boolean validateInputs() {
+		if(val.isNotEmpty(txtWidth.getText(), lblWidth.getText()) && 
+		   val.isNotEmpty(txtHeight.getText(), lblHeight.getText()) && 
+		   val.isNotEmpty(txtDepth.getText(), lblDepth.getText()) && 
+		   val.isNotEmpty(txtCapacity.getText(), lblCapacity.getText()) && 
+		   val.isNumber(txtWidth.getText(), lblWidth.getText()) && 
+		   val.isNumber(txtHeight.getText(), lblHeight.getText()) && 
+		   val.isNumber(txtDepth.getText(), lblDepth.getText()) &&
+		   val.isNumber(txtCapacity.getText(), lblCapacity.getText())) { 
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

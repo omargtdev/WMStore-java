@@ -5,6 +5,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import com.cibertec.operations.Validations;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -13,7 +16,7 @@ public class ConfigDiscount extends JDialog implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel lbl5to10;
+	private JLabel lbl1to5;
 	private JLabel lbl6to10;
 	private JLabel lbl11to15;
 	private JLabel lbl15orMore;
@@ -27,7 +30,7 @@ public class ConfigDiscount extends JDialog implements ActionListener {
 	private JLabel lblPorcent4;
 	private JButton btnAccept;
 	private JButton btnCancel;
-
+	private Validations val;
 	/**
 	 * Launch the application.
 	 */
@@ -50,13 +53,16 @@ public class ConfigDiscount extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public ConfigDiscount() {
+		
+		val = new Validations();
+
 		setTitle("Configurar pocentajes de descuento");
 		setBounds(100, 100, 450, 157);
 		getContentPane().setLayout(null);
 		
-		lbl5to10 = new JLabel("1 a 5 unidades");
-		lbl5to10.setBounds(10, 11, 75, 14);
-		getContentPane().add(lbl5to10);
+		lbl1to5 = new JLabel("1 a 5 unidades");
+		lbl1to5.setBounds(10, 11, 75, 14);
+		getContentPane().add(lbl1to5);
 		
 		lbl6to10 = new JLabel("6 a 10 unidades");
 		lbl6to10.setBounds(10, 36, 87, 14);
@@ -107,6 +113,7 @@ public class ConfigDiscount extends JDialog implements ActionListener {
 		getContentPane().add(lblPorcent4);
 		
 		btnAccept = new JButton("Aceptar");
+		btnAccept.addActionListener(this);
 		btnAccept.setBounds(335, 7, 89, 23);
 		getContentPane().add(btnAccept);
 		
@@ -116,10 +123,36 @@ public class ConfigDiscount extends JDialog implements ActionListener {
 		getContentPane().add(btnCancel);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAccept) {
+			actionPerformedBtnAccept(e);
+		}
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
 		}
 	}
+
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 	}
+
+	protected void actionPerformedBtnAccept(ActionEvent e) {
+		if(validateInputs()) {
+			System.out.println("hola");
+		}
+	}
+	
+	private boolean validateInputs() {
+		if(val.isNotEmpty(txt1to5.getText(), lbl1to5.getText()) && 
+		   val.isNotEmpty(txt6to10.getText(), lbl6to10.getText()) && 
+		   val.isNotEmpty(txt11to15.getText(), lbl11to15.getText()) && 
+		   val.isNotEmpty(txt15orMore.getText(), lbl15orMore.getText()) && 
+		   val.isNumber(txt1to5.getText(), lbl1to5.getText()) && 
+		   val.isNumber(txt6to10.getText(), lbl6to10.getText()) && 
+		   val.isNumber(txt11to15.getText(), lbl11to15.getText()) &&
+		   val.isNumber(txt15orMore.getText(), lbl15orMore.getText())) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }

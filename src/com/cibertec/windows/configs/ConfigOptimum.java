@@ -5,6 +5,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import com.cibertec.operations.Validations;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -19,6 +22,7 @@ public class ConfigOptimum extends JDialog implements ActionListener {
 	private JButton btnCancel;
 	private JButton btnAccept;
 	private JLabel lblOptimalQuantity;
+	private Validations val;
 
 	/**
 	 * Launch the application.
@@ -42,6 +46,9 @@ public class ConfigOptimum extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public ConfigOptimum() {
+		
+		val = new Validations();
+		
 		setTitle("Configurar cantidad óptima");
 		setBounds(100, 100, 450, 105);
 		getContentPane().setLayout(null);
@@ -56,6 +63,7 @@ public class ConfigOptimum extends JDialog implements ActionListener {
 
 		txtOptimalQuantity.setColumns(10);
 		btnAccept = new JButton("Aceptar");
+		btnAccept.addActionListener(this);
 		btnAccept.setBounds(335, 7, 89, 23);
 		getContentPane().add(btnAccept);
 
@@ -66,10 +74,20 @@ public class ConfigOptimum extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAccept) {
+			actionPerformedBtnAccept(e);
+		}
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
 		}
 	}
+
 	protected void actionPerformedBtnCancel(ActionEvent e) {
+	}
+
+	protected void actionPerformedBtnAccept(ActionEvent e) {
+		if(val.isNotEmpty(txtOptimalQuantity.getText(), lblOptimalQuantity.getText()) && val.isInt(txtOptimalQuantity.getText(), lblOptimalQuantity.getText())) {
+
+		}
 	}
 }

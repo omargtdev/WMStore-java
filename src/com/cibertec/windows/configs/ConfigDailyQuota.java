@@ -3,6 +3,9 @@ package com.cibertec.windows.configs;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.UIManager;
+
+import com.cibertec.operations.Validations;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -17,6 +20,7 @@ public class ConfigDailyQuota extends JDialog implements ActionListener {
 	private JButton btnCancel;
 	private JLabel lblDailyQuota;
 	private JButton btnAccept;
+	private Validations val;
 
 	/**
 	 * Launch the application.
@@ -40,6 +44,9 @@ public class ConfigDailyQuota extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public ConfigDailyQuota() {
+		
+		val = new Validations();
+		
 		setTitle("Configurar cuota diaria");
 		setBounds(100, 100, 450, 102);
 		getContentPane().setLayout(null);
@@ -54,6 +61,7 @@ public class ConfigDailyQuota extends JDialog implements ActionListener {
 		txtDailyQuota.setColumns(10);
 
 		btnAccept = new JButton("Aceptar");
+		btnAccept.addActionListener(this);
 		btnAccept.setBounds(335, 7, 89, 23);
 		getContentPane().add(btnAccept);
 
@@ -65,11 +73,21 @@ public class ConfigDailyQuota extends JDialog implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAccept) {
+			actionPerformedBtnAccept(e);
+		}
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
 		}
 	}
 	
 	protected void actionPerformedBtnCancel(ActionEvent e) {
+
+	}
+
+	protected void actionPerformedBtnAccept(ActionEvent e) {
+		if(val.isNotEmpty(txtDailyQuota.getText(), lblDailyQuota.getText()) && val.isNumber(txtDailyQuota.getText(), lblDailyQuota.getText())) {
+			
+		}
 	}
 }
